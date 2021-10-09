@@ -69,6 +69,7 @@ public:
 	{
 		tagNone = 0,
 		tagFile,
+		tagVerAttr,
 		tagVersion,
 		tagCompound,
 		tagBlock,
@@ -97,6 +98,7 @@ public:
 	NifXmlHandler()
 	{
 		tags.insert( "niftoolsxml", tagFile );
+		tags.insert( "verattr", tagVerAttr );
 		tags.insert( "version", tagVersion );
 		tags.insert( "module", tagModule );
 		tags.insert( "struct", tagCompound );
@@ -308,6 +310,8 @@ public:
 				}
 				break;
 			case tagModule:
+				break;
+			case tagVerAttr:
 				break;
 			default:
 				err( tr( "expected basic, enum, struct, niobject or version got %1 instead" ).arg( tagid ) );
