@@ -407,7 +407,7 @@ win32 {
 
 	# Standards conformance to match GCC and clang
 	!isEmpty(_MSC_VER):greaterThan(_MSC_VER, 1900) {
-		QMAKE_CXXFLAGS += /permissive- /std:c++latest
+		QMAKE_CXXFLAGS += /permissive-
 	}
 
 	# LINKER FLAGS

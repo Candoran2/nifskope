@@ -143,6 +143,17 @@ bool NifIStream::read( NifValue & val )
 			val.val.u32 = half_to_float( half );
 			return (dataStream->status() == QDataStream::Ok);
 		}
+	case NifValue::tNormbyte:
+		{
+			quint8 v;
+			float fv;
+			*dataStream >> v;
+			fv = (double(v) / 255.0) * 2.0 - 1.0;
+			val.val.u64 = 0;
+			val.val.f32 = fv;
+
+			return (dataStream->status() == QDataStream::Ok);
+		}
 	case NifValue::tByteVector3:
 		{
 			quint8 x, y, z;
@@ -564,6 +575,12 @@ bool NifOStream::write( const NifValue & val )
 			uint16_t half = half_from_float( val.val.u32 );
 			return device->write( (char *)&half, 2 ) == 2;
 		}
+	case NifValue::tNormbyte:
+		{
+			uint8_t v = round( ((val.val.f32 + 1.0) / 2.0) * 255.0 );
+
+			return device->write( (char*)&v, 1 ) == 1;
+		}
 	case NifValue::tByteVector3:
 		{
 			Vector3 * vec = static_cast<Vector3 *>(val.val.data);
@@ -826,6 +843,7 @@ int NifSStream::size( const NifValue & val )
 			return 1;
 
 	case NifValue::tByte:
+	case NifValue::tNormbyte:
 		return 1;
 	case NifValue::tWord:
 	case NifValue::tShort:

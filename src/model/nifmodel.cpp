@@ -1398,6 +1398,7 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 							       .arg( item->value().toCount(), 8, 16, QChar( '0' ) );
 						}
 					case NifValue::tFloat:
+					case NifValue::tNormbyte:
 					case NifValue::tHfloat:
 						{
 							return tr( "float: %1\nhex: 0x%2" )
