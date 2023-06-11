@@ -128,6 +128,7 @@ public:
 		tHalfVector2,
 		tByteColor4,
 		tBSVertexDesc,
+		tNormbyte,
 		tNone= 0xff
 	};
 
@@ -251,7 +252,7 @@ public:
 	//! Check if the type of the data is a flag type (Flags in xml).
 	bool isFlags() const { return typ == tFlags; }
 	//! Check if the type of the data is a float type (Float in xml).
-	bool isFloat() const { return (typ == tFloat) || (typ == tHfloat); }
+	bool isFloat() const { return (typ == tFloat) || (typ == tHfloat) || (typ == tNormbyte); }
 	//! Check if the type of the data is of a link type (Ref or Ptr in xml).
 	bool isLink() const { return typ == tLink || typ == tUpLink; }
 	//! Check if the type of the data is a 3x3 matrix type (Matrix33 in xml).
